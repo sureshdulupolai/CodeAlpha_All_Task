@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}View Orders{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">📋 Current Orders</h1>
+
+  <h3>🟢 Active Orders</h3>
+  {% for order in active_orders %}
+    <div class="card mb-3 shadow-sm p-3">
+      <h5>Order #{{ order.id }} - Table {{ order.table.number }}</h5>
+      <p>Created: {{ order.created_at }}</p>
+      <a href="{% url 'restaurantapp:complete_order' order.id %}" class="btn btn-success">Mark as Completed</a>
+    </div>
+  {% empty %}
+    <p>No active orders.</p>
+  {% endfor %}
+
+  <hr>
+  <h3>⚪ Completed Orders</h3>
+  {% for order in completed_orders %}
+    <div class="card mb-3 shadow-sm p-3">
+      <h5>Order #{{ order.id }} - Table {{ order.table.number }}</h5>
+      <p>Completed ✅</p>
+    </div>
+  {% empty %}
+    <p>No completed orders yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}
