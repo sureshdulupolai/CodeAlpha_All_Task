@@ -46,7 +46,7 @@ The projects were built using **Python (Django & Flask)**, covering real-world b
 ---
 
 ## ⚙️ Technologies Used
-- **Backend:** Python, Django, Flask
+- **Backend:** Python, Django
 - **Database:** SQLite
 - **Frontend:** HTML, CSS, Bootstrap (for templates)
 - **Other:** Django REST Framework (for APIs), CSRF protection, Authentication & Authorization
