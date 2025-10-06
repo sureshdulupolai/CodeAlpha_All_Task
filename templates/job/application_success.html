@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Application Submitted{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h3 class="text-success">✔ Successfully Applied for {{ job.title }}!</h3>
+  <a href="{% url 'jobapp:job_list' %}" class="btn btn-primary mt-3">Back to Jobs</a>
+</div>
+{% endblock %}

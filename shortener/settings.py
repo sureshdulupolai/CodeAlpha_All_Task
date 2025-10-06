@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'eventapp',
     'restaurantapp',
+    'jobapp',
 ]
 
 MIDDLEWARE = [

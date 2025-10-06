@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+  <h3 class="text-success">✔ Successfully Done!</h3>
+  <a href="{% url 'jobapp:job_list' %}" class="btn btn-primary mt-3">Back to Jobs</a>
+</div>
+{% endblock %}
