@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">🍽️ Menu</h1>
+  <div class="row">
+    {% for item in menu %}
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">{{ item.description|truncatechars:100 }}</p>
+            <p class="card-text"><strong>Price:</strong> ₹{{ item.price }}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No menu items available.</p>
+    {% endfor %}
+  </div>
+  <a href="{% url 'restaurantapp:place_order' %}" class="btn btn-primary mt-3">Place an Order</a>
+</div>
+{% endblock %}

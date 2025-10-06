@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Order Success{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+  <h1 class="mb-4">✅ Order Placed Successfully!</h1>
+  <p>Your order ID is <strong>#{{ order.id }}</strong> for Table {{ order.table.number }}.</p>
+
+  <h5 class="mt-4">Ordered Items:</h5>
+  <ul class="list-group mt-2 mb-4">
+    {% for item in order.items.all %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ item.menu_item.name }} (x{{ item.quantity }})
+        <span>₹{{ item.menu_item.price|floatformat:2 }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'restaurantapp:menu_list' %}" class="btn btn-primary">Back to Menu</a>
+</div>
+{% endblock %}

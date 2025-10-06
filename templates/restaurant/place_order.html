@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Place Order{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">🛒 Place an Order</h1>
+  
+  <form method="POST">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="table" class="form-label">Select Table</label>
+      <select name="table" id="table" class="form-control" required>
+        {% for table in tables %}
+          <option value="{{ table.id }}">Table {{ table.number }} ({{ table.seats }} seats)</option>
+        {% empty %}
+          <option disabled>No tables available</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <h5 class="mt-4">Select Menu Items</h5>
+    {% for item in menu %}
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" name="items" value="{{ item.id }}" id="item{{ item.id }}">
+        <label class="form-check-label" for="item{{ item.id }}">
+          {{ item.name }} - ₹{{ item.price }}
+        </label>
+        <input type="number" name="quantities" value="1" min="1" class="form-control mt-1" style="width: 80px;">
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success mt-3">Place Order</button>
+    <a href="{% url 'restaurantapp:menu_list' %}" class="btn btn-secondary mt-3 ms-2">Cancel</a>
+  </form>
+</div>
+{% endblock %}
