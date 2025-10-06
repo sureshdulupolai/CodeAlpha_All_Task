@@ -1,65 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>CodeAlpha - URL Shortener</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f6fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .container {
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      width: 400px;
-      text-align: center;
-    }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #3498db;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #2980b9;
-    }
-    .short-url {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>🔗 URL Shortener</h2>
-    <form method="POST">
-      {% csrf_token %}
-      <input type="url" name="original_url" placeholder="Enter long URL..." required>
-      <br>
-      <button type="submit">Generate Short URL</button>
-    </form>
+{% extends "base.html" %}
+{% block title %}URL Shortener{% endblock %}
 
-    {% if short_url %}
-      <div class="short-url">
-        <p>Your Short URL:</p>
-        <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
-      </div>
-    {% endif %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm p-4">
+      <h2 class="text-center mb-4">🔗 URL Shortener</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="url" name="original_url" class="form-control" placeholder="Enter long URL..." required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Generate Short URL</button>
+      </form>
+
+      {% if short_url %}
+        <div class="alert alert-success text-center mt-4">
+          <p>Your Short URL:</p>
+          <a href="{{ short_url }}" target="_blank">{{ short_url }}</a>
+        </div>
+      {% endif %}
+    </div>
   </div>
-</body>
-</html>
+</div>
+{% endblock %}

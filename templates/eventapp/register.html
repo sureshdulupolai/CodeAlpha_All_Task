@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Register for {{ event.title }}{% endblock %}
+
+{% block content %}
+<div class="card mx-auto shadow-sm" style="max-width: 500px;">
+  <div class="card-body">
+    <h3 class="card-title mb-3">Register for {{ event.title }}</h3>
+    {% if success %}
+      <div class="alert alert-success">✅ Registration Successful!</div>
+      <a href="{% url 'eventapp:event_list' %}" class="btn btn-primary">Back to Events</a>
+    {% else %}
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Submit</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

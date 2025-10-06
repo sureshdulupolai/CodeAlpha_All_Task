@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Events List{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">🎉 Upcoming Events</h1>
+<div class="row">
+  {% for event in events %}
+    <div class="col-md-6 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ event.title }}</h5>
+          <p class="card-text">{{ event.description|truncatechars:100 }}</p>
+          <p class="card-text"><small class="text-muted">{{ event.date }} | {{ event.location }}</small></p>
+          
+          <a href="{% url 'eventapp:event_detail' event.id %}" class="btn btn-primary mb-2">View Details</a>
+          <a href="{% url 'eventapp:register_event' event.id %}" class="btn btn-success">Register</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12 text-center">
+      <p>No events available.</p>
+      <a href="{% url 'eventapp:add_event' %}" class="btn btn-primary">Add New Event</a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

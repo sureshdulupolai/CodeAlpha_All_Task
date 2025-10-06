@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Add New Event{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">➕ Add New Event</h1>
+  
+  <div class="card shadow-sm p-4">
+    <form method="POST">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        <label for="id_title" class="form-label">Event Title</label>
+        <input type="text" name="title" class="form-control" id="id_title" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_description" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="id_description" rows="4" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_date" class="form-label">Date & Time</label>
+        <input type="datetime-local" name="date" class="form-control" id="id_date" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_location" class="form-label">Location</label>
+        <input type="text" name="location" class="form-control" id="id_location" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Event</button>
+      <a href="{% url 'eventapp:event_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
